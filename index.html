@@ -69,20 +69,20 @@
     </form>
 
     <section id="error-btns">
-      <button>Console Log</button>
-      <button>Console Error</button>
-      <button>Console Count</button>
-      <button>Console Warn</button>
-      <button>Console Assert</button>
-      <button>Console Clear</button>
-      <button>Console Dir</button>
-      <button>Console dirxml</button>
-      <button>Console Group Start</button>
-      <button>Console Group End</button>
-      <button>Console Table</button>
-      <button>Start Timer</button>
-      <button>End Timer</button>
-      <button>Console Trace</button>
+      <button id="log-button" >Console Log</button>
+      <button id="error-button" >Console Error</button>
+      <button id="count-button" >Console Count</button>
+      <button id="warn-button" >Console Warn</button>
+      <button id="assert-button" >Console Assert</button>
+      <button id="clear-button" >Console Clear</button>
+      <button id="dir-button" >Console Dir</button>
+      <button id="dirxml-button" >Console dirxml</button>
+      <button id="grpst-button" >Console Group Start</button>
+      <button id="grped-button" >Console Group End</button>
+      <button id="tbl-button" >Console Table</button>
+      <button id="sttmr-button" >Start Timer</button>
+      <button id="edtmr-button" >End Timer</button>
+      <button id="trace-button" >Console Trace</button>
       <button>Trigger a Global Error</button>
     </section>
   </main>
@@ -102,6 +102,22 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    let logButton = document.getElementById('log-button');
+    logButton.addEventListener('click', () => {
+      console.log("Console logging");
+    });
+
+    let errorButton = document.getElementById('error-button');
+    errorButton.addEventListener('click', () => {
+      console.error("Console error");
+    });
+
+    let countButton = document.getElementById('count-button');
+    countButton.addEventListener('click', () => {
+      console.count('Console count');
+    });
+    
+
   </script>
 </body>
 
