@@ -95,8 +95,7 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      var answer = eval(`${firstNum} ${operator} ${secondNum}`);
-      output.innerHTML = answer;
+      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
@@ -125,11 +124,13 @@
 
     let assertButton = document.getElementById('assert-button');
     assertButton.addEventListener('click', () => {
-      const x = 3;
-      const y = 5;
-      const z = x + y;
-      const why = 'Answer should be 8'
-      console.assert(z == 0, {x, y, why});
+      let output = document.querySelector('output');
+      let firstNum = document.querySelector('#first-num').value;
+      let secondNum = document.querySelector('#second-num').value;
+      let operator = document.querySelector('#operator').value;
+      let answer = eval(`${firstNum} ${operator} ${secondNum}`);
+      const why = `Answer should be ${answer}`;
+      console.assert(answer == output.innerHTML, {firstNum, secondNum, why});
     });
 
     let clearButton = document.getElementById('clear-button');
