@@ -95,7 +95,8 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      var answer = eval(`${firstNum} ${operator} ${secondNum}`);
+      output.innerHTML = answer;
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
@@ -116,7 +117,81 @@
     countButton.addEventListener('click', () => {
       console.count('Console count');
     });
-    
+
+    let warnButton = document.getElementById('warn-button');
+    warnButton.addEventListener('click', () => {
+      console.warn("Console warning");
+    });
+
+    let assertButton = document.getElementById('assert-button');
+    assertButton.addEventListener('click', () => {
+      const x = 3;
+      const y = 5;
+      const z = x + y;
+      const why = 'Answer should be 8'
+      console.assert(z == 0, {x, y, why});
+    });
+
+    let clearButton = document.getElementById('clear-button');
+    clearButton.addEventListener('click', () => {
+      console.clear();
+    });
+
+    let dirButton = document.getElementById('dir-button');
+    dirButton.addEventListener('click', () => {
+      console.dir(document.head);
+    });
+
+    let dirXmlButton = document.getElementById('dirxml-button');
+    dirXmlButton.addEventListener('click', () => {
+      console.dirxml(document);
+    });
+
+    const label = 'Console Messages';
+    let groupStartButton = document.getElementById('grpst-button');
+    groupStartButton.addEventListener('click', () => {
+      console.group(label);
+    });
+
+    let groupEndButton = document.getElementById('grped-button');
+    groupEndButton.addEventListener('click', () => {
+      console.groupEnd(label);
+    });
+
+    let consoleTblButton = document.getElementById('tbl-button');
+    consoleTblButton.addEventListener('click', () => {
+      var fruit = [
+      {
+        fruit: 'Apple',
+        color: 'Red',
+      },
+      {
+        fruit: 'Orange',
+        color: 'Orange',
+      },
+      {
+        fruit: 'Banana',
+        color: 'Yellow',
+      }
+      ];
+      console.table(fruit);
+    });
+
+    const timer = 'Console Timer';
+    let startTimerButton = document.getElementById('sttmr-button');
+    startTimerButton.addEventListener('click', () => {
+      console.time(timer);
+    });
+
+    let timerEndButton = document.getElementById('edtmr-button');
+    timerEndButton.addEventListener('click', () => {
+      console.timeEnd(timer);
+    });
+
+    let traceButton = document.getElementById('trace-button');
+    traceButton.addEventListener('click', () => {
+      console.trace();
+    });
 
   </script>
 </body>
