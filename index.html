@@ -104,22 +104,50 @@
     // You may move this JS to another file if you wish
     let logButton = document.getElementById('log-button');
     logButton.addEventListener('click', () => {
-      console.log("Console logging");
+      let output = document.querySelector('output');
+      let firstNum = document.querySelector('#first-num').value;
+      let secondNum = document.querySelector('#second-num').value;
+      let operator = document.querySelector('#operator').value;
+      console.log(`Answer: ${output.innerHTML}`);
     });
 
     let errorButton = document.getElementById('error-button');
     errorButton.addEventListener('click', () => {
-      console.error("Console error");
+      let output = document.querySelector('output');
+      let firstNum = document.querySelector('#first-num').value;
+      let secondNum = document.querySelector('#second-num').value;
+      let operator = document.querySelector('#operator').value;
+      console.error(`Answer: ${output.innerHTML}`);
     });
 
     let countButton = document.getElementById('count-button');
     countButton.addEventListener('click', () => {
-      console.count('Console count');
+      let output = document.querySelector('output');
+      let firstNum = document.querySelector('#first-num').value;
+      let secondNum = document.querySelector('#second-num').value;
+      let operator = document.querySelector('#operator').value;
+      if(output.innerHTML) {
+        for(let i = 0; i < output.innerHTML; i++) {
+          console.count('Answer');
+        }
+      }
+      else {
+        console.count('No Count');
+      }
     });
 
     let warnButton = document.getElementById('warn-button');
     warnButton.addEventListener('click', () => {
-      console.warn("Console warning");
+      let output = document.querySelector('output');
+      let firstNum = document.querySelector('#first-num').value;
+      let secondNum = document.querySelector('#second-num').value;
+      let operator = document.querySelector('#operator').value;
+      if(output.innerHTML) {
+        console.warn(`Answer: ${output.innerHTML}`);
+      }
+      else {
+        console.warn('No Answer');
+      }
     });
 
     let assertButton = document.getElementById('assert-button');
@@ -128,9 +156,14 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      let answer = eval(`${firstNum} ${operator} ${secondNum}`);
-      const why = `Answer should be ${answer}`;
-      console.assert(answer == output.innerHTML, {firstNum, secondNum, why});
+      if(!output.innerHTML) {
+        console.assert(1 == 1);
+      }
+      else {
+        let answer = eval(`${firstNum} ${operator} ${secondNum}`);
+        const why = `Answer should be ${answer}`;
+        console.assert(answer == output.innerHTML, {firstNum, secondNum, why});
+      }
     });
 
     let clearButton = document.getElementById('clear-button');
@@ -148,7 +181,7 @@
       console.dirxml(document);
     });
 
-    const label = 'Console Messages';
+    const label = 'Operations';
     let groupStartButton = document.getElementById('grpst-button');
     groupStartButton.addEventListener('click', () => {
       console.group(label);
@@ -161,21 +194,19 @@
 
     let consoleTblButton = document.getElementById('tbl-button');
     consoleTblButton.addEventListener('click', () => {
-      var fruit = [
+      let output = document.querySelector('output');
+      let firstNum = document.querySelector('#first-num').value;
+      let secondNum = document.querySelector('#second-num').value;
+      let operator = document.querySelector('#operator').value;
+      var numbers = [
       {
-        fruit: 'Apple',
-        color: 'Red',
-      },
-      {
-        fruit: 'Orange',
-        color: 'Orange',
-      },
-      {
-        fruit: 'Banana',
-        color: 'Yellow',
+        x: firstNum,
+        operator: operator,
+        y: secondNum,
+        z: output.innerHTML
       }
       ];
-      console.table(fruit);
+      console.table(numbers);
     });
 
     const timer = 'Console Timer';
