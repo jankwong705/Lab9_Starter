@@ -5,6 +5,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "67e38d8a76e248aaba7362a3e882d41b"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+
   <title>Lab 9</title>
 
   <style>
@@ -83,7 +92,9 @@
       <button id="sttmr-button" >Start Timer</button>
       <button id="edtmr-button" >End Timer</button>
       <button id="trace-button" >Console Trace</button>
-      <button>Trigger a Global Error</button>
+      <button id="error">Error</button>
+      <button id="invalid-person" > Invalid Person</button>
+      <button id="global-button">Trigger a Global Error</button>
     </section>
   </main>
 
@@ -193,7 +204,61 @@
     traceButton.addEventListener('click', () => {
       console.trace();
     });
+    
+    let syntaxError = document.getElementById('error');
+    syntaxError.addEventListener('click', () => {
+      function badcode() {
+        throw new Error('this code sucks');
+      }
+      try {
+        badcode();
+      } catch(err) {
+        alert(err.message);
+      }
+    });
 
+    let invalidPersonButton = document.getElementById('invalid-person');
+    invalidPersonButton.addEventListener('click', () => {
+      class PersonError extends Error {
+        constructor(message) {
+          super(message);
+          this.name = 'PersonError';
+        }
+      }
+
+      function validatePerson(person) {
+        if (!person) {
+          throw new Error('non-existent person');
+        }
+        if (person.name === undefined || person.age === undefined) {
+              throw new PersonError('missing personal identifiers');
+        }
+        if (!(typeof person.name === 'string' && (person.name.length > 0) && typeof person.age === 'number' && person.age >= 0)) {
+          throw new PersonError('invalid personal identifiers')
+        }
+      }
+      try {
+        const person = {
+          name: 'Bob',
+          age: -3,
+        }
+        validatePerson(person);
+      } catch (err) {
+        alert('Invalid Person: ' + err.message);
+      } finally {
+        alert('finished validating');
+      }
+  })
+
+  let globalError = document.getElementById('global-button');
+  globalError.addEventListener('click', () => {
+    try {
+      sdfsaf;
+    } catch(err) {
+      console.log('Error:' + err.message);
+      throw err;
+    }
+  });
   </script>
 </body>
 
