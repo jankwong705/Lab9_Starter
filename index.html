@@ -298,12 +298,16 @@
   let globalError = document.getElementById('global-button');
   globalError.addEventListener('click', () => {
     try {
-      sdfsaf;
+    sdfsaf();
     } catch(err) {
       console.log('Error:' + err.message);
       throw err;
     }
   });
+  window.onerror = function(message, src, lineNumber) {
+    console.log('Error caught and logged');
+    return true;
+  }
   </script>
 </body>
 
