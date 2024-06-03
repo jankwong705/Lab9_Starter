@@ -182,12 +182,12 @@
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
       if(!output.innerHTML) {
-        console.assert(1 == 1);
+        console.assert(1 != 1);
       }
       else {
         let answer = eval(`${firstNum} ${operator} ${secondNum}`);
         const why = `Answer should be ${answer}`;
-        console.assert(answer == output.innerHTML, {firstNum, secondNum, why});
+        console.assert(answer != output.innerHTML, {firstNum, secondNum, why});
       }
     });
 
